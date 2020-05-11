@@ -26,16 +26,25 @@ function watchForm() {
     $('form').submit(event => {
         event.preventDefault();
         let numberOfDogs = $("#js-numberOfDogs").val();
-        
-        if(numberOfDogs > 0 && numberOfDogs <= 50) {
-            getDogImage(numberOfDogs); 
-        } 
-        else if(num <= 0) {
-            getDogImage(3);
-        } else {
-            getDogImage(50);
+        if(validateForm()) {
+          getDogImage(numberOfDogs);
         }
+        //if(numberOfDogs > 0 && numberOfDogs <= 50) {
+        //    getDogImage(numberOfDogs); 
+        //} else {
+        //  
+        //}
     });
+}
+
+function validateForm() {
+  let x = document.forms["dogForm"]["numberOfDogs"].value;
+  if (x <= 0 || x >= 51) {
+    alert("Must be a number between 1 and 50");
+    return false;
+  } else {
+    return true;
+  }
 }
 
 $(function() {
